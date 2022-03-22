@@ -67,7 +67,12 @@ const Product = ({ productRequest, fetchRequest, fetchFail, fetchSuccess }) => {
               {/* if item is in stock then display add to cart button */}
               <ListGroup.Item>
                 <div className="d-grid">
-                  {<InStockButton count={result.countInStock} />}
+                  {
+                    <InStockButton
+                      count={result.countInStock}
+                      product={result}
+                    />
+                  }
                 </div>
               </ListGroup.Item>
             </ListGroup>
