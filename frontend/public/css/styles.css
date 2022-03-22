@@ -2,19 +2,8 @@ body {
   margin: 0;
 }
 
-header {
-  background-color: #404040;
-  padding: 1rem;
-}
-
-header a {
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 .home {
-  padding: 1rem;
+  flex: 1;
 }
 
 .products {
