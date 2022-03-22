@@ -1,36 +1,55 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import data from "../../database/data";
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Home = () => {
+import { fetchRequest, fetchFail, fetchSuccess } from '../../actions';
+import ProductCard from '../ProductCard';
+
+const Home = ({ productsRequest, fetchRequest, fetchFail, fetchSuccess }) => {
+  const { products, loading, error } = productsRequest;
+
+  useEffect(() => {
+    (async () => {
+      fetchRequest();
+      await axios
+        .get('/api/products')
+        .then((res) => {
+          // setProducts(res.data);
+          fetchSuccess(res.data);
+        })
+        .catch((err) => {
+          fetchFail(err.message);
+        });
+    })();
+  }, []);
+
   return (
-    <div>
-      <header>
-        <Link to="/">E-Commerce</Link>
-      </header>
-      <main>
-        <h1>Featured Products</h1>
-        <div className="products">
-          {data.products.map((product) => (
-            <div className="product" key={product.slug}>
-              <Link to={`/product/${product.slug}`}>
-                <img src={product.image} alt={product.name} />
-              </Link>
-              <div className="product-info">
-                <Link to={`/product/${product.slug}`}>
-                  <p>{product.name}</p>
-                </Link>
-                <p>
-                  <strong>${product.price}</strong>
-                </p>
-                <button>Add to cart</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
+    <div className="home">
+      <h1>Featured Products</h1>
+      <div className="products">
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div>{error}</div>
+        ) : (
+          products.map((product) => (
+            <ProductCard key={product.slug} product={product} />
+          ))
+        )}
+      </div>
     </div>
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    productsRequest: state.requestReducer,
+  };
+};
+
+export default connect(mapStateToProps, {
+  fetchRequest,
+  fetchFail,
+  fetchSuccess,
+})(Home);
