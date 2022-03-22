@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <Card.Text>${product.price}</Card.Text>
         {/* if item is in stock then display add to cart button */}
-        <InStockButton count={product.countInStock} />
+        <InStockButton count={product.countInStock} product={product} />
       </Card.Body>
     </Card>
   );

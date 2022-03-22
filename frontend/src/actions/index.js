@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   FETCH_FAIL,
   FETCH_SUCCESS,
@@ -18,6 +19,12 @@ export const fetchFail = (err) => (dispatch) => {
   dispatch({ type: FETCH_FAIL, payload: getError(err) });
 };
 
-export const addItemToCart = (item) => (dispatch) => {
-  dispatch({ type: CART_ADD_ITEM, payload: item });
+export const addItemToCart = (item) => async (dispatch) => {
+  const { data } = await axios.get(`/api/products/${item._id}`);
+  if (data.countInStock < 1) {
+    window.alert('Sorry. Product is out of stock!');
+  } else {
+    item.quantity = 1;
+    dispatch({ type: CART_ADD_ITEM, payload: item });
+  }
 };
