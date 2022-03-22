@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
 
 import { fetchRequest, fetchFail, fetchSuccess } from '../../actions';
@@ -33,9 +34,13 @@ const Home = ({ productsRequest, fetchRequest, fetchFail, fetchSuccess }) => {
         ) : error ? (
           <div>{error}</div>
         ) : (
-          products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))
+          <Row>
+            {products.map((product) => (
+              <Col sm={6} md={4} lg={3} className="mb-3" key={product.slug}>
+                <ProductCard product={product} />
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </div>
