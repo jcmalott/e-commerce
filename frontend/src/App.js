@@ -12,7 +12,7 @@ const App = () => {
     <BrowserRouter>
       <div className="d-flex flex-column min-vh-100">
         <Header />
-        <Container>
+        <Container className="mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:slug" element={<Product />} />

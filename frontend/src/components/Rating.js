@@ -1,19 +1,19 @@
 import React from 'react';
 
-const Rating = ({ rating, numReviews }) => {
+const Rating = ({ rating, numReviews, maxStars }) => {
   return (
     <div className="rating">
-      {createStarRating(rating, 1, 0.5, numReviews)}
-      {createStarRating(rating, 2, 1.5, numReviews)}
-      {createStarRating(rating, 3, 2.5, numReviews)}
-      {createStarRating(rating, 4, 3.5, numReviews)}
-      {createStarRating(rating, 5, 4.5, numReviews)}
-      <span>{numReviews} reviews</span>
+      {createStarRating(rating, 1, 0.5)}
+      {createStarRating(rating, 2, 1.5)}
+      {createStarRating(rating, 3, 2.5)}
+      {createStarRating(rating, 4, 3.5)}
+      {createStarRating(rating, 5, 4.5)}
+      <span>{numReviews}</span>
     </div>
   );
 };
 
-const createStarRating = (rating, upper, lower, numReviews) => {
+const createStarRating = (rating, upper, lower) => {
   return (
     <span>
       <i

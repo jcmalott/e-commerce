@@ -6,27 +6,34 @@ import { connect } from 'react-redux';
 
 import { fetchRequest, fetchFail, fetchSuccess } from '../../actions';
 import ProductCard from '../ProductCard';
+import { Helmet } from 'react-helmet-async';
 
+/**
+ * Display products from server to site.
+ *
+ * @param productsRequest products: products stored in server, loading: true if request successed; false otherwise
+ * @returns products to display
+ */
 const Home = ({ productsRequest, fetchRequest, fetchFail, fetchSuccess }) => {
-  const { products, loading, error } = productsRequest;
+  const { result, loading, error } = productsRequest;
 
+  // gets products from server
   useEffect(() => {
     (async () => {
       fetchRequest();
       await axios
         .get('/api/products')
-        .then((res) => {
-          // setProducts(res.data);
-          fetchSuccess(res.data);
-        })
-        .catch((err) => {
-          fetchFail(err.message);
-        });
+        .then((res) => fetchSuccess(res.data))
+        .catch((err) => fetchFail(err.message));
     })();
   }, []);
 
+  // display products to site
   return (
     <div className="home">
+      <Helmet>
+        <title>E-Commerce</title>
+      </Helmet>
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
@@ -35,7 +42,7 @@ const Home = ({ productsRequest, fetchRequest, fetchFail, fetchSuccess }) => {
           <div>{error}</div>
         ) : (
           <Row>
-            {products.map((product) => (
+            {result.map((product) => (
               <Col sm={6} md={4} lg={3} className="mb-3" key={product.slug}>
                 <ProductCard product={product} />
               </Col>

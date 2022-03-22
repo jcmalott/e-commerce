@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import reduxThunk from 'redux-thunk';
+import { HelmetProvider } from 'react-helmet-async';
 
 import App from './App';
 import reducers from './reducers';
@@ -12,7 +13,9 @@ ReactDOM.render(
   <Provider
     store={createStore(reducers, composeEnhancers(applyMiddleware(reduxThunk)))}
   >
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </Provider>,
   document.getElementById('root')
 );

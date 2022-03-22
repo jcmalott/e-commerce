@@ -1,9 +1,11 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
+import InStockButton from '../helper/InStockButton';
 
 const ProductCard = ({ product }) => {
   return (
@@ -17,7 +19,8 @@ const ProductCard = ({ product }) => {
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <Card.Text>${product.price}</Card.Text>
-        <Button>Add to cart</Button>
+        {/* if item is in stock then display add to cart button */}
+        <InStockButton count={product.countInStock} />
       </Card.Body>
     </Card>
   );

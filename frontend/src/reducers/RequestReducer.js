@@ -1,11 +1,11 @@
 import { FETCH_FAIL, FETCH_SUCCESS, FETCH_REQUEST } from '../helper/types';
 
-const ProductsReducer = (state = { loading: true }, action) => {
+const RequestReducer = (state = { loading: true }, action) => {
   switch (action.type) {
     case FETCH_REQUEST:
       return { ...state, loading: true };
     case FETCH_SUCCESS:
-      return { ...state, products: action.payload, loading: false };
+      return { ...state, result: action.payload, loading: false };
     case FETCH_FAIL:
       return { ...state, loading: false, error: action.payload };
     default:
@@ -13,4 +13,4 @@ const ProductsReducer = (state = { loading: true }, action) => {
   }
 };
 
-export default ProductsReducer;
+export default RequestReducer;
