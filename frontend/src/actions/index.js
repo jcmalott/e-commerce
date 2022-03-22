@@ -1,4 +1,5 @@
 import { FETCH_FAIL, FETCH_SUCCESS, FETCH_REQUEST } from '../helper/types';
+import { getError } from '../utils';
 
 export const fetchRequest = () => (dispatch) => {
   dispatch({ type: FETCH_REQUEST });
@@ -9,5 +10,5 @@ export const fetchSuccess = (data) => (dispatch) => {
 };
 
 export const fetchFail = (err) => (dispatch) => {
-  dispatch({ type: FETCH_FAIL, payload: err });
+  dispatch({ type: FETCH_FAIL, payload: getError(err) });
 };

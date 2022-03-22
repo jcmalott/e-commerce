@@ -12,6 +12,8 @@ import { Helmet } from 'react-helmet-async';
 import { fetchFail, fetchRequest, fetchSuccess } from '../../actions';
 import Rating from '../Rating';
 import InStockButton from '../../helper/InStockButton';
+import LoadingWidget from '../LoadingWidget';
+import MessageBox from '../MessageBox';
 
 const Product = ({ productRequest, fetchRequest, fetchFail, fetchSuccess }) => {
   const params = useParams();
@@ -24,14 +26,14 @@ const Product = ({ productRequest, fetchRequest, fetchFail, fetchSuccess }) => {
       await axios
         .get(`/api/products/slug/${slug}`)
         .then((res) => fetchSuccess(res.data))
-        .catch((err) => fetchFail(err.message));
+        .catch((err) => fetchFail(err));
     })();
   }, [slug]);
 
   return loading ? (
-    <div>Loading</div>
+    <LoadingWidget />
   ) : error ? (
-    <div>{error}</div>
+    <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <Row>
       <Col md={6}>

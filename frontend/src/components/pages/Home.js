@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { fetchRequest, fetchFail, fetchSuccess } from '../../actions';
 import ProductCard from '../ProductCard';
 import { Helmet } from 'react-helmet-async';
+import LoadingWidget from '../LoadingWidget';
+import MessageBox from '../MessageBox';
 
 /**
  * Display products from server to site.
@@ -37,9 +39,9 @@ const Home = ({ productsRequest, fetchRequest, fetchFail, fetchSuccess }) => {
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>Loading...</div>
+          <LoadingWidget />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {result.map((product) => (

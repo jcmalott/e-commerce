@@ -1,7 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
