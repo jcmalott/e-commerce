@@ -8,7 +8,6 @@ import Nav from 'react-bootstrap/Nav';
 import Badge from 'react-bootstrap/Badge';
 
 const Header = ({ cart }) => {
-  console.log('Cart: ', cart);
   return (
     <header>
       <Navbar bg="dark" variant="dark">
