@@ -1,5 +1,18 @@
 import express from 'express';
 import data from './data.js';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
+mongoose
+  // .connect(process.env.MONGODB_URI) // atlas
+  .connect(process.env.MONGODB_LOCAL_URI)
+  .then(() => {
+    console.log('connected to DB');
+  })
+  .catch((err) => {
+    console.log('Error: ' + err.message);
+  });
 
 const app = express();
 
