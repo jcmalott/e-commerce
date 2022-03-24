@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import seedRouter from './routes/seedRoutes.js';
 import productRouter from './routes/productRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config();
 mongoose
@@ -17,6 +18,9 @@ mongoose
   });
 
 const app = express();
+// so that form sent can be transfer into JSON
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/seed', seedRouter);
 
@@ -24,6 +28,12 @@ app.use('/api/seed', seedRouter);
 //   res.send(data.products);
 // });
 app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
+
+// this will run when expressAsyncHandler throws an error
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
 
 // moved to productRoutes.js file
 // app.get('/api/products/slug/:slug', (req, res) => {
