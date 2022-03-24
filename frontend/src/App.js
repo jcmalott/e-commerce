@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './components/pages/Home';
 import Product from './components/pages/Product';
@@ -13,6 +15,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="d-flex flex-column min-vh-100">
+        <ToastContainer position="bottom-center" limit={1} />
         <Header />
         <Container className="mt-3">
           <Routes>

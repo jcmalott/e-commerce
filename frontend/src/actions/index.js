@@ -6,6 +6,8 @@ import {
   CART_ADD_ITEM,
   CART_SUBTRACT_ITEM,
   CART_REMOVE_ITEM,
+  SIGN_IN_USER,
+  SIGN_OUT_USER,
 } from '../helper/types';
 import { getError } from '../utils';
 
@@ -36,4 +38,12 @@ export const subtractItemFromCart = (item) => (dispatch) => {
 
 export const removeItemFromCart = (item) => (dispatch) => {
   dispatch({ type: CART_REMOVE_ITEM, payload: item });
+};
+
+export const signinUser = (data) => (dispatch) => {
+  dispatch({ type: SIGN_IN_USER, payload: data });
+};
+
+export const signoutUser = () => (dispatch) => {
+  dispatch({ type: SIGN_OUT_USER });
 };
