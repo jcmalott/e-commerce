@@ -4,11 +4,18 @@ import {
   CART_REMOVE_ITEM,
 } from '../helper/types';
 
-const itemsInCart = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
-  : [];
+const getCartItems = () => {
+  if (localStorage.getItem('userInfo')) {
+    const itemsInCart = localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [];
+    return { cartItems: itemsInCart };
+  } else {
+    return { cartItems: [] };
+  }
+};
 
-const CartReducer = (state = { cartItems: itemsInCart }, action) => {
+const CartReducer = (state = getCartItems(), action) => {
   const cartItem = action.payload;
   let existItem;
   let newCartItems = [];

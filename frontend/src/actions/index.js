@@ -8,6 +8,7 @@ import {
   CART_REMOVE_ITEM,
   SIGN_IN_USER,
   SIGN_OUT_USER,
+  SHIPPING_USER_INFO,
 } from '../helper/types';
 import { getError } from '../utils';
 
@@ -40,10 +41,26 @@ export const removeItemFromCart = (item) => (dispatch) => {
   dispatch({ type: CART_REMOVE_ITEM, payload: item });
 };
 
-export const signinUser = (data) => (dispatch) => {
-  dispatch({ type: SIGN_IN_USER, payload: data });
+export const signinUser = (data) => (dispatch, getState) => {
+  dispatch({
+    type: SIGN_IN_USER,
+    payload: data,
+    cart: getState().cartReducer,
+    shipping: getState().shippingReducer,
+  });
 };
 
-export const signoutUser = () => (dispatch) => {
-  dispatch({ type: SIGN_OUT_USER });
+export const signoutUser = () => (dispatch, getState) => {
+  dispatch({
+    type: SIGN_OUT_USER,
+    cart: getState().cartReducer,
+    shipping: getState().shippingReducer,
+  });
+};
+
+export const addShippingAddress = (shippingAddress) => (dispatch) => {
+  dispatch({
+    type: SHIPPING_USER_INFO,
+    payload: shippingAddress,
+  });
 };
