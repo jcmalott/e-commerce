@@ -9,6 +9,7 @@ import {
   SIGN_IN_USER,
   SIGN_OUT_USER,
   SHIPPING_USER_INFO,
+  SAVE_PAYMENT_METHOD,
 } from '../helper/types';
 import { getError } from '../utils';
 
@@ -62,5 +63,12 @@ export const addShippingAddress = (shippingAddress) => (dispatch) => {
   dispatch({
     type: SHIPPING_USER_INFO,
     payload: shippingAddress,
+  });
+};
+
+export const addPaymentMethod = (paymentMethod) => (dispatch) => {
+  dispatch({
+    type: SAVE_PAYMENT_METHOD,
+    payload: paymentMethod,
   });
 };

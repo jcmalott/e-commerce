@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import ShoppingCart from './components/pages/ShoppingCart';
 import Signin from './components/pages/Signin';
 import ShippingAddress from './components/pages/ShippingAddress';
+import Signup from './components/pages/Signup';
+import PaymentMethod from './components/pages/PaymentMethod';
 
 const App = () => {
   return (
@@ -24,7 +26,9 @@ const App = () => {
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/product/:slug" element={<Product />} />
             <Route path="/signin" element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/shipping" element={<ShippingAddress />} />
+            <Route path="/payment" element={<PaymentMethod />} />
           </Routes>
         </Container>
         <Footer />

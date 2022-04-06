@@ -1,4 +1,4 @@
-import { SHIPPING_USER_INFO } from '../helper/types';
+import { SHIPPING_USER_INFO, SAVE_PAYMENT_METHOD } from '../helper/types';
 
 const getShippingAddress = () => {
   if (localStorage.getItem('userInfo')) {
@@ -18,6 +18,12 @@ const ShippingReducer = (state = getShippingAddress(), action) => {
       return {
         ...state,
         shippingAddress: action.payload,
+      };
+    case SAVE_PAYMENT_METHOD:
+      localStorage.setItem('paymentMethod', JSON.stringify(action.payload));
+      return {
+        ...state,
+        paymentMethod: action.payload,
       };
     default:
       return state;

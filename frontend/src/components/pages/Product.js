@@ -18,7 +18,8 @@ import MessageBox from '../MessageBox';
 const Product = ({ productRequest, fetchRequest, fetchFail, fetchSuccess }) => {
   const params = useParams();
   const { slug } = params;
-  const { result, loading, error } = productRequest;
+  const { loading, error } = productRequest;
+  const result = productRequest.result[0];
 
   useEffect(() => {
     (async () => {

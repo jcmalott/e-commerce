@@ -13,14 +13,20 @@ const SignInReducer = (state = { userInfo: userInfo }, action) => {
       const shippingAddress = localStorage.getItem('shippingAddress')
         ? JSON.parse(localStorage.getItem('shippingAddress'))
         : {};
+      const paymentMethod = localStorage.getItem('paymentMethod')
+        ? JSON.parse(localStorage.getItem('paymentMethod'))
+        : '';
       action.cart.cartItems = itemsInCart;
       action.shipping.shippingAddress = shippingAddress;
+      action.shipping.paymentMethod = paymentMethod;
       return { ...state, userInfo: action.payload };
     case SIGN_OUT_USER:
       localStorage.removeItem('userInfo');
-      // localStorage.removeItem('shippingAddress'); // this info should be in the database?
+      localStorage.removeItem('paymentMethod');
+      localStorage.removeItem('shippingAddress'); // this info should be in the database?
       action.cart.cartItems = [];
       action.shipping.shippingAddress = {};
+      action.shipping.paymentMethod = '';
       return {
         ...state,
         userInfo: null,
