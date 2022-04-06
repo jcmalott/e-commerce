@@ -13,6 +13,7 @@ import Signin from './components/pages/Signin';
 import ShippingAddress from './components/pages/ShippingAddress';
 import Signup from './components/pages/Signup';
 import PaymentMethod from './components/pages/PaymentMethod';
+import PlaceOrder from './components/pages/PlaceOrder';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/shipping" element={<ShippingAddress />} />
             <Route path="/payment" element={<PaymentMethod />} />
+            <Route path="/placeorder" element={<PlaceOrder />} />
           </Routes>
         </Container>
         <Footer />

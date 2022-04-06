@@ -23,7 +23,7 @@ const PaymentMethod = ({ shipping, addPaymentMethod }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     addPaymentMethod(payMethodName);
-    navigate('/placeholder');
+    navigate('/placeorder');
   };
 
   return (
